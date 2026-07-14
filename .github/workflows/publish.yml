@@ -1,10 +1,16 @@
 name: Auto-Blog Publisher
 
-# Runs 3x/day at 08:00, 14:00, 20:00 UTC. Adjust the times as needed.
+# Runs 3x/day, timed for a US (Eastern) audience:
+#   12:00 UTC =  8:00 AM ET  (morning)
+#   17:00 UTC =  1:00 PM ET  (midday)
+#   23:00 UTC =  7:00 PM ET  (evening)
+# NOTE: GitHub cron is always UTC and does NOT follow daylight saving. These
+# times are correct for EDT (summer). During EST (winter) they land one hour
+# earlier (7 AM / 12 PM / 6 PM ET) - shift each hour +1 if you want to correct it.
 # You can also trigger it manually from the Actions tab ("Run workflow").
 on:
   schedule:
-    - cron: "0 8,14,20 * * *"
+    - cron: "0 12,17,23 * * *"
   workflow_dispatch:
     inputs:
       limit:
