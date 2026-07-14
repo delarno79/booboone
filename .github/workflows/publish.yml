@@ -10,11 +10,8 @@ name: Auto-Blog Publisher
 # You can also trigger it manually from the Actions tab ("Run workflow").
 on:
   schedule:
-    # Deliberately NOT on the hour: GitHub heavily delays (or drops) scheduled
-    # runs at :00 because that is peak load. :20 past is far more reliable.
-    - cron: "20 12,17,23 * * *"
-    # TEMPORARY one-off demo run (18:55 UTC). Remove this line afterwards.
-    - cron: "55 18 * * *"
+    # 12:00 UTC = 8:00 AM ET | 17:00 UTC = 1:00 PM ET | 23:00 UTC = 7:00 PM ET
+    - cron: "0 12,17,23 * * *"
   workflow_dispatch:
     inputs:
       limit:
