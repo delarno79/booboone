@@ -1,0 +1,18 @@
+# Secrets — never commit real credentials
+.env
+
+# Generated media / runtime state
+generated_images/
+*.log
+logs/
+
+# NOTE: keywords.state.json is intentionally committed so publishing history
+# (which keywords are already used) persists across GitHub Actions runs.
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.DS_Store

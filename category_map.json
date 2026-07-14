@@ -1,0 +1,16 @@
+{
+  "_comment": "Maps each keyword-doc category to the client's EXISTING WordPress category ID. Using IDs (not names) is duplicate-proof: WordPress category search is unreliable for names containing '&', which previously caused duplicate categories. To retarget a category, change its ID here (find IDs in WP Admin -> Posts -> Categories, hover a category to see tag_ID=NN in the URL).",
+  "Business & Finance": 47,
+  "Beauty & Fashion": 99,
+  "Health & Lifestyle": 6,
+  "Tech & Science": 42,
+  "Food & Supplements": 8,
+  "Pet and Animals": 12,
+  "Travel": 876,
+  "Entertainment": 11,
+  "Automotive": 104,
+  "Legal": 102,
+  "Discovery & History": 41,
+  "Diseases & Conditions": 54,
+  "Top 7": 89
+}

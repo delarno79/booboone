@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git --version)",
+      "Bash(python -m pip install -q -r requirements.txt)",
+      "Bash(echo \"=== install exit: $? ===\")",
+      "Bash(python -m compileall -q autoblog main.py convert_docx.py setup_check.py)",
+      "Bash(python -c \"import autoblog.config, autoblog.tracker, autoblog.content, autoblog.image, autoblog.wordpress, autoblog.runner, autoblog.logging_setup; print\\('all imports OK'\\)\")",
+      "Bash(cp keywords.sample.json keywords.json)",
+      "Bash(python main.py --status)",
+      "Bash(python main.py)",
+      "Bash(python -c ' *)",
+      "Bash(python convert_docx.py scratch_test.docx -o scratch_out.json)",
+      "Bash(rm -f scratch_test.docx scratch_out.json)",
+      "Bash(ls -1 *.docx *.doc)",
+      "Bash(ls -1 .env)",
+      "Bash(ls -1 keywords.json)",
+      "Bash(python convert_docx.py \"Booboone Keyword List.docx\")",
+      "Bash(python setup_check.py)",
+      "Bash(python main.py --dry-run --limit 1)",
+      "Bash(python main.py --limit 1)",
+      "Bash(python -c \"import autoblog.runner, autoblog.image, autoblog.stock_image, autoblog.config; print\\('imports OK'\\)\")",
+      "Bash(python -m compileall -q autoblog)",
+      "Bash(python main.py --limit 3)",
+      "Bash(python \"C:/Users/CLOUDJ~1/AppData/Local/Temp/claude/c--Users-CloudJUnction-Desktop-fiverProject/efe1cf29-26c8-4bbe-a6e4-90f7932bdd98/scratchpad/cleanup_test_drafts.py\")",
+      "Bash(python \"C:/Users/CLOUDJ~1/AppData/Local/Temp/claude/c--Users-CloudJUnction-Desktop-fiverProject/efe1cf29-26c8-4bbe-a6e4-90f7932bdd98/scratchpad/fix_categories_and_images.py\")",
+      "WebFetch(domain:ai.google.dev)",
+      "WebFetch(domain:www.alibabacloud.com)",
+      "WebFetch(domain:platform.openai.com)",
+      "WebFetch(domain:developers.openai.com)",
+      "Bash(python -c \"import autoblog.openai_image, autoblog.image, autoblog.runner, autoblog.config; print\\('imports OK'\\)\")",
+      "Bash(python main.py --category \"Travel\" --limit 1)",
+      "Bash(python main.py --category \"Beauty & Fashion\" --limit 1)",
+      "Bash(python main.py --category \"Tech & Science\" --limit 1)",
+      "Bash(python main.py --limit 2)"
+    ]
+  }
+}

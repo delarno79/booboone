@@ -1,0 +1,86 @@
+{
+  "used": {
+    "Health & Lifestyle": {
+      "mental health": {
+        "published_at": "2026-07-11T12:25:25.488770+00:00",
+        "post_id": 41421,
+        "url": "https://booboone.com/?p=41421"
+      },
+      "schizophrenia": {
+        "published_at": "2026-07-12T12:54:01.721212+00:00",
+        "post_id": 41471,
+        "url": "https://booboone.com/?p=41471"
+      }
+    },
+    "Tech & Science": {
+      "aws and cloud computing": {
+        "published_at": "2026-07-11T12:25:49.943817+00:00",
+        "post_id": 41423,
+        "url": "https://booboone.com/?p=41423"
+      }
+    },
+    "Legal": {
+      "Personal injury lawyer": {
+        "published_at": "2026-07-11T12:28:32.358620+00:00",
+        "post_id": 41433,
+        "url": "https://booboone.com/?p=41433"
+      }
+    },
+    "Business & Finance": {
+      "Small business": {
+        "published_at": "2026-07-11T13:26:24.066102+00:00",
+        "post_id": 41447,
+        "url": "https://booboone.com/?p=41447"
+      },
+      "business bank account": {
+        "published_at": "2026-07-11T14:04:43.769727+00:00",
+        "post_id": 41456,
+        "url": "https://booboone.com/?p=41456"
+      },
+      "business line of credit": {
+        "published_at": "2026-07-12T12:39:40.036099+00:00",
+        "post_id": 41460,
+        "url": "https://booboone.com/?p=41460"
+      },
+      "business venture ideas": {
+        "published_at": "2026-07-12T12:43:27.294326+00:00",
+        "post_id": 41463,
+        "url": "https://booboone.com/?p=41463"
+      },
+      "business development": {
+        "published_at": "2026-07-12T12:52:53.843835+00:00",
+        "post_id": 41467,
+        "url": "https://booboone.com/?p=41467"
+      },
+      "business finance": {
+        "published_at": "2026-07-13T23:39:26.186780+00:00",
+        "post_id": 41477,
+        "url": "https://booboone.com/?p=41477"
+      },
+      "Business credit": {
+        "published_at": "2026-07-14T00:13:52.603714+00:00",
+        "post_id": 41481,
+        "url": "https://booboone.com/?p=41481"
+      }
+    },
+    "Beauty & Fashion": {
+      "eye creams for dark circles": {
+        "published_at": "2026-07-12T12:53:29.875741+00:00",
+        "post_id": 41469,
+        "url": "https://booboone.com/?p=41469"
+      },
+      "skin moisturizer for dry skin": {
+        "published_at": "2026-07-14T00:14:34.223548+00:00",
+        "post_id": 41483,
+        "url": "https://booboone.com/?p=41483"
+      }
+    },
+    "Travel": {
+      "luxury cruises": {
+        "published_at": "2026-07-13T23:57:04.243678+00:00",
+        "post_id": 41479,
+        "url": "https://booboone.com/?p=41479"
+      }
+    }
+  }
+}
