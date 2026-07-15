@@ -10,13 +10,15 @@ name: Auto-Blog Publisher
 # You can also trigger it manually from the Actions tab ("Run workflow").
 on:
   schedule:
-    # Fires 10 minutes EARLY on purpose, so the posts actually LAND at the
-    # target times (8:00 AM / 1:00 PM / 7:00 PM ET). GitHub delays jobs queued
-    # on the hour, so starting at :50 absorbs that delay.
-    #   11:50 UTC = 7:50 AM ET  -> posts land ~8:00 AM ET
-    #   16:50 UTC = 12:50 PM ET -> posts land ~1:00 PM ET
-    #   22:50 UTC = 6:50 PM ET  -> posts land ~7:00 PM ET
-    - cron: "50 11,16,22 * * *"
+    # Fires 30 minutes EARLY on purpose to absorb GitHub's scheduler delay
+    # (observed ~35-45 min), so posts LAND near the target times (8AM/1PM/7PM ET).
+    #   11:30 UTC = 7:30 AM ET  -> posts land ~8:00 AM ET (target)
+    #   16:30 UTC = 12:30 PM ET -> posts land ~1:00 PM ET (target)
+    #   22:30 UTC = 6:30 PM ET  -> posts land ~7:00 PM ET (target)
+    # NOTE: GitHub cron delay is variable (0-45 min), so exact timing isn't
+    # guaranteed. For minute-precise timing, use an external trigger (cron-job.org
+    # calling the workflow_dispatch API).
+    - cron: "30 11,16,22 * * *"
   workflow_dispatch:
     inputs:
       limit:
