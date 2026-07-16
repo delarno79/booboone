@@ -14,6 +14,8 @@ import mimetypes
 from pathlib import Path
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 logger = logging.getLogger("autoblog")
 
@@ -37,6 +39,16 @@ class WordPressClient:
         token = base64.b64encode(f"{username}:{app_password}".encode()).decode()
         self.session = requests.Session()
         self.session.headers.update({"Authorization": f"Basic {token}"})
+        # Retry only on connection/read failures (NOT on HTTP status codes, so
+        # POSTs are never re-sent after the server received them -> no duplicate
+        # posts). This rides out transient network blips / brief throttling.
+        retry = Retry(
+            total=None, connect=4, read=3, backoff_factor=3.0, status=0,
+            respect_retry_after_header=True,
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        self.session.mount("https://", adapter)
+        self.session.mount("http://", adapter)
         self._category_cache: dict[str, int] = {}
 
     # -- diagnostics --------------------------------------------------------
