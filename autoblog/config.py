@@ -46,7 +46,7 @@ class Config:
 
     # DeepSeek (text)
     deepseek_api_key: str = ""
-    deepseek_model: str = "deepseek-chat"
+    deepseek_model: str = "deepseek-v4-flash"
     deepseek_base_url: str = "https://api.deepseek.com"
 
     # Gemini / Imagen (images)
@@ -87,7 +87,7 @@ class Config:
             wp_user=os.getenv("WP_USER") or "",
             wp_app_password=os.getenv("WP_APP_PASSWORD") or "",
             deepseek_api_key=os.getenv("DEEPSEEK_API_KEY") or "",
-            deepseek_model=os.getenv("DEEPSEEK_MODEL") or "deepseek-chat",
+            deepseek_model=os.getenv("DEEPSEEK_MODEL") or "deepseek-v4-flash",
             gemini_api_key=os.getenv("GEMINI_API_KEY") or "",
             image_model=os.getenv("IMAGE_MODEL") or "gemini-2.5-flash-image",
             generate_images=_bool(os.getenv("GENERATE_IMAGES"), default=True),
