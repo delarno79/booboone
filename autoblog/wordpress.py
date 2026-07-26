@@ -11,6 +11,7 @@ import html
 import json
 import logging
 import mimetypes
+import time
 from pathlib import Path
 
 import requests
@@ -52,9 +53,31 @@ class WordPressClient:
         self._category_cache: dict[str, int] = {}
 
     # -- diagnostics --------------------------------------------------------
-    def test_connection(self) -> dict:
-        """Verify credentials; returns the authenticated user's data."""
-        resp = self.session.get(f"{self.api}/users/me", timeout=30)
+    def test_connection(self, *, max_retries: int = 4, wait: int = 60) -> dict:
+        """Verify credentials; returns the authenticated user's data.
+
+        Retries on 403/429 because some hosts (e.g. Hostinger) briefly block or
+        rate-limit the requesting server's IP. A short wait often clears it; if
+        it doesn't, the workflow's fresh-runner auto-retry takes over.
+        """
+        resp = None
+        for attempt in range(1, max_retries + 1):
+            resp = self.session.get(f"{self.api}/users/me", timeout=30)
+            if resp.status_code == 200:
+                return resp.json()
+            if resp.status_code in (403, 429) and attempt < max_retries:
+                logger.warning(
+                    "WordPress returned %s (attempt %d/%d) - likely a temporary "
+                    "host IP block. Waiting %ds and retrying.",
+                    resp.status_code,
+                    attempt,
+                    max_retries,
+                    wait,
+                )
+                time.sleep(wait)
+                continue
+            break
+        assert resp is not None
         resp.raise_for_status()
         return resp.json()
 
