@@ -13,11 +13,27 @@ from __future__ import annotations
 
 import argparse
 import sys
+from datetime import datetime, timezone
+from pathlib import Path
 
 from autoblog.config import Config, ConfigError
 from autoblog.logging_setup import setup_logging
 from autoblog.runner import run
 from autoblog.tracker import KeywordTracker
+
+
+def _write_status(log_dir: Path, published: int, failed: int, note: str) -> None:
+    """Append one easy-to-read line per run to logs/status.log for at-a-glance
+    monitoring (e.g. '2026-07-27 12:00 UTC | Published 13 | Failed 0 | OK')."""
+    try:
+        log_dir.mkdir(parents=True, exist_ok=True)
+        stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+        with open(log_dir / "status.log", "a", encoding="utf-8") as fh:
+            fh.write(
+                f"{stamp}  |  Published {published:>2}  |  Failed {failed:>2}  |  {note}\n"
+            )
+    except Exception:  # noqa: BLE001 - status logging must never break a run
+        pass
 
 
 def main() -> int:
@@ -67,12 +83,22 @@ def main() -> int:
     except ConfigError as err:
         print(f"\n[CONFIG ERROR] {err}\n")
         print("Copy .env.example to .env and fill in the values.")
+        _write_status(cfg.log_dir, 0, 0, "FAIL (configuration)")
         return 1
     except FileNotFoundError as err:
         print(f"\n[ERROR] {err}\n")
+        _write_status(cfg.log_dir, 0, 0, "FAIL (missing file)")
         return 1
+    except Exception as err:  # noqa: BLE001 - record the failure, then surface it
+        _write_status(cfg.log_dir, 0, 0, f"FAIL ({type(err).__name__})")
+        raise
 
-    return 0 if result["failed"] == 0 else 2
+    published, failed = result["published"], result["failed"]
+    note = "OK" if failed == 0 and published > 0 else (
+        "PARTIAL" if published > 0 else "FAIL (nothing published)"
+    )
+    _write_status(cfg.log_dir, published, failed, note)
+    return 0 if failed == 0 else 2
 
 
 if __name__ == "__main__":
